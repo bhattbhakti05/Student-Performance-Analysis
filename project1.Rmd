@@ -1,0 +1,106 @@
+---
+title: "Project_1_0788808"
+output: 
+html_document:
+    toc: true
+---
+
+I have completed this project by myself and that i have adhered to St.Clair college Academic Integrity policies in completing this project.
+
+"R version 4.1.1 (2021-08-10)"
+
+Rstudio version-version 1.4.1717
+ 
+○	Documentation of the data sets:  
+
+■	attribution of the owner/creator of the data:
+  https://www.kaggle.com/spscientist
+  
+■	links to the data:
+  https://www.kaggle.com/spscientist/students-performance-in-exams
+  
+■	summary information about the data (you may have to edit the original documentation):
+  This dataset contains the information about the marks secure by students in various subject and skills. It also          provides the data about influence of the parent’s background, test preparation, etc. on student performance.
+  
+First,load package "tidyverse" and dataset "studentperdormanceinexam"
+``` {r}
+library(tidyverse)
+project <- read.csv("C:/Users/bhakt/OneDrive/Desktop/sem1/DAB501Basic Stats & Expl Data Anal/DAB501/project/StudentsPerformance.csv",header=TRUE)
+```
+
+○	two plots displaying the distribution of a single continuous variable 
+
+```{r}
+ggplot(project,aes(x=writing.score))+geom_histogram(binwidth = .5,color="violet")+labs(title="Student Performance in Histogram",subtitle = "Writing score of Students",caption = "This Histogram plot displying single continuous variable(writing scores) from the student performance ",x="Wrting Score")
+
+```
+```{r}
+ggplot(project,aes(x=writing.score))+geom_density(color="red")+labs(title="Student Performance in Density",subtitle = "Writing score of Students",caption = "Density displaying single continuous variable from the student performance",x="Wrting Score")
+
+```
+
+○	two plots displaying information about a single categorical variable
+
+```{r}
+ggplot(project,aes(x=writing.score,fill=gender))+geom_histogram(binwidth = 2,alpha=0.5)+labs(title="Student Performance in Histogram",subtitle = "Writing score of Students according to Gender",caption = "Histogram displaying information about a one categorical value",x="Wrting Score")
+
+```
+```{r}
+ggplot(project,aes(x=writing.score,fill=gender))+geom_density(adjust=2,alpha=0.5)+labs(title="Student Performance in Density",subtitle = "Writing score of Students according to Gender",caption = "This plot shows about the density of writing scores of students according to gender",x="Wrting Score")
+
+```
+
+○	one plot displaying information about both a continuous variable and a categorical variable 
+
+```{r}
+ggplot(project,aes(x=writing.score,y=gender))+geom_boxplot(color="blue")+labs(title="Student Performance in BoxPlot",subtitle = "Writing score of Students according to Gender",caption = "This Box plot displaying information about one categorical(gender) and a continuous variable(writing score)",x="Wrting Score",y="Gender")
+```
+
+○	two plots should display information that shows a relationship between two variables 
+
+```{r}
+ggplot(project,aes(x=writing.score,y=reading.score))+geom_hex()+labs(title="Student Performance in Hex Plot",subtitle = "Relationship between Writing score and Reading score ",caption = "Here hex plot provides the information about the relation between two different variables",x="Wrting Score",y="Reading Score")
+```
+```{r}
+ggplot(project,aes(x=writing.score,y=math.score))+geom_violin(fill="pink",color="red")+labs(title="Student Performance in Violin",subtitle = "Relationship between Writing score and Math score ",caption = "This showing the relation between two variables(Writing and math score) in a violin",x="Wrting Score",y="Math Score")
+```
+
+
+○	one plot should use faceting and display information about 4 variables
+
+```{r}
+ggplot(project,aes(x=writing.score,fill=gender))+geom_histogram(binwidth = 10) +
+facet_grid(gender~lunch~test.preparation.course~race.ethnicity)+labs(title="Faceting",subtitle = "Facet between gender,lnch,test preperation course and race ethnicity ",caption = "Here Histogram  shows about faceting between four different variables from dataset",x="Wrting Score")
+```
+
+○	creative plot:
+
+```{r}
+library(plotly)
+```
+
+```{r}
+library(gganimate)
+```
+```{r}
+
+ggplotly(ggplot(project,aes(x=writing.score,y=reading.score))+geom_point( color="darkred")+labs(title="Creative Plot",subtitle = "Creative ploting between reading and writing scores",caption = "In this plot i used ggploty to display variables and in interactive plot when we point our cursor it will show value of that point",x="Wrting Score",y="Reading Score"))
+```
+
+■	In what ways do you think data visualization is important to understanding a data set? 
+  
+  I think,data visualization gives us a clear idea about what the data implies by giving it visual setting through      maps or charts.It makes the data more identical for the people to understand and it also easier to identify           trends,pattern and other information within large data sets.Add on,Data visualization helps to quickly and clearly    tell the story that the numbers represent.
+
+■	In what ways do you think data visualization is important to communicating important aspects of a data set?
+ 
+  In my opinion,we require data visualization as a visual outline of data,which makes it simpler to recognize designs   and patterns than looking through thousands of line on a documents.Moreover,Charts and graphs make communicating      data findings easier even if one can identify the patterns without them.
+
+■	What role does your integrity as an analyst play when creating a data visualization for communicating results to      others?
+ 
+  As a data analyst,there are several responsibilities which one has to perform like,Providing expertise in data        storage structures, data mining, and data cleansing,make data easy to understand and simple to view.Translating       numbers and facts to inform strategic business decisions.Furthermore,Coming up with solutions to business             problems.
+  
+  
+■	How many variables do you think you can successfully represent in a visualization? What happens when you exceed this
+  number?
+  
+  I used more than 4 variable in a visualization.If i exceed this number, visualization for the variables may not       visible clearly and it will display some complicated charts and graphs which can not be understood very easily by     any person.
